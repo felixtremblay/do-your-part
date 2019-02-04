@@ -16,13 +16,14 @@ channel_2_id = config['DEFAULT']['channel_2_id']
 update_frequency = int(config['DEFAULT']['update_frequency'])
 
 api_url = 'https://content.googleapis.com/youtube/v3/channels'
-data = {
+
+def getSubGap():
+    data = {
         "id" : '',
         "key" : api_key,
         "part" : 'statistics'
         }
-
-def getSubGap():
+   
     data["id"] = channel_1_id
     r = requests.get(api_url, params=data)
     channel_1_sub_count = int(r.json()["items"][0]["statistics"]["subscriberCount"])
@@ -36,7 +37,7 @@ def getSubGap():
 
 @rumps.timer(update_frequency)
 def updateTimer(_):
-    app.title = "Sub gap : " + getSubGap()
+    app.title = "Sub Gap : " + getSubGap()
 
 app = rumps.App("dyp default title", quit_button=rumps.MenuItem("Quit"))
 app.run()
