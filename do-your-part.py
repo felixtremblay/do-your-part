@@ -21,7 +21,8 @@ def getSubGap():
     data = {
         "id" : '',
         "key" : api_key,
-        "part" : 'statistics'
+        "part" : 'statistics',
+        "fields" : 'items/statistics/subscriberCount'
         }
    
     data["id"] = channel_1_id
